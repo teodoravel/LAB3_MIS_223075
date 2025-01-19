@@ -1,0 +1,58 @@
+plugins {
+    id("com.android.application")
+    id("kotlin-android")
+    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+    id("dev.flutter.flutter-gradle-plugin")
+
+    // Add the Google services Gradle plugin (for Firebase)
+    id("com.google.gms.google-services")
+}
+
+android {
+    namespace = "com.example.joke_app"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        // Your unique Application ID
+        applicationId = "com.example.joke_app"
+
+        // Flutter automatically provides these constants from your pubspec.
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            // Using debug signing config for now so `flutter run --release` works out-of-box
+            signingConfig = signingConfigs.debug
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+// (Optional) Add some Firebase dependencies in Kotlin DSL:
+dependencies {
+    // The Firebase BoM (selects matching versions for all Firebase libraries)
+    implementation(platform("com.google.firebase:firebase-bom:33.8.0"))
+    // Example: Firebase Analytics
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    // Example: If you need Cloud Firestore, add:
+    // implementation("com.google.firebase:firebase-firestore-ktx")
+    // Example: If you need FCM for push notifications, add:
+    // implementation("com.google.firebase:firebase-messaging-ktx")
+}
